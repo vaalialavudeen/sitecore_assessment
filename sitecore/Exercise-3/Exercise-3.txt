@@ -1,0 +1,18 @@
+Exercise:3 linux problem solving 
+
+problem:issuse on redis services 
+
+redis services failed besause of logfile path has been changed in redis.conf file.
+redis services try to write the log in redis-server.log,It was not present in wrong path(/var/log/redis-server.log).
+After change the correct redis log path and restart the redis service it will be working fine
+
+or 
+
+In redis.conf file logfile path is mentioned /var/log/redis-server.log so create new file( touch redis-server.log) in /var/log
+change the owership and permission to redis-server.log file 
+chown redis:redis redis-server.log
+chmod 664 redis-server.log
+After change owership and permission, change the logfile ReadWriteDirectories path in /lib/systemd/system/redis-server.service
+ReadWriteDirectories=/var/log/redis-server.log
+After change the path in redis-server.services file and restart the redis service it will be working fine.
+

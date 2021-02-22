@@ -2,8 +2,9 @@ Exercise:4 windows problem solving
 
 issus with the web application installed when browsing to http://localhost we get 503 exception
 
-As check in IIS configuration,Application pool is not correctly configure so we get 503 error.
+As check in IIS configuration,In DefaultAppPool identity was set to ApplicationIdentityUser 
 
-Application pool --->change DefaultAppPool to .Net v2.0
+After i change ApplicationIdentityUser to ApplicationPoolIdentity site will working fine.
 
-After change the Application pool site working fine
+you set Anonymous user in identity you need add same user in  AppPool user and it was fixed only after adding permissions to the IUSR user.
+
